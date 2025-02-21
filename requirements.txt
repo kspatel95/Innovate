@@ -1,0 +1,26 @@
+# Install the required packages with the following command:
+# pip install -r requirements.txt
+
+##################################################
+
+# python==3.8.5
+# conda==4.9.2
+dash
+dash_mantine_components
+dash-bootstrap-components
+dash-core-components
+dash-html-components
+dash_iconify
+dash_auth
+dash_google_auth
+flask
+datetime
+pytz
+timezonefinder
+openai
+orjson
+pandas
+authlib
+gcloud
+google-cloud-iam
+google-cloud-secret-manager
