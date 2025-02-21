@@ -1,0 +1,5 @@
+**/.venv
+**/.vscode
+**/google-cloud-sdk
+**/.dockerignore
+**/.DS_Store
