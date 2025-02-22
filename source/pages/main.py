@@ -1896,7 +1896,7 @@ def hospitality_menu(menu):
 
 dash.register_page(
     __name__,
-    path="/" if __name__ in ["/", "/home", "/signingoogle", "/logout", "/cafe", "/hospitality", "/priyanka"] else "/", # Remove Priyanka if pushing to server
+    path="/" if __name__ in ["/", "/home", "/signingoogle", "/logout", "/cafe", "/hospitality"] else "/",
     path_template="/<page>",
     redirect_from=['/home', '/logout'],
     title='Innovate',

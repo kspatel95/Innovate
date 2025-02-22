@@ -24,3 +24,4 @@ authlib
 gcloud
 google-cloud-iam
 google-cloud-secret-manager
+gunicorn
