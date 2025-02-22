@@ -13,11 +13,21 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Secrets
-gcloud_creds = orjson.loads(secrets_mgr.access_secret_version("gcloud"))
-os.environ["SECRET_KEY"] = gcloud_creds.get("client_secret")
-os.environ["CLIENT_ID"] = gcloud_creds.get("client_id")
-os.environ["CLIENT_SECRET"] = gcloud_creds.get("client_secret")
-os.environ["OPENAI_API_KEY"] = secrets_mgr.access_secret_version("openai")
+try:
+    gcloud_creds = orjson.loads(secrets_mgr.access_secret_version("gcloud"))
+    os.environ["SECRET_KEY"] = gcloud_creds.get("client_secret")
+    os.environ["CLIENT_ID"] = gcloud_creds.get("client_id")
+    os.environ["CLIENT_SECRET"] = gcloud_creds.get("client_secret")
+except:
+    gcloud_creds = ""
+    os.environ["SECRET_KEY"] = ""
+    os.environ["CLIENT_ID"] = ""
+    os.environ["CLIENT_SECRET"] = ""
+try:
+    os.environ["OPENAI_API_KEY"] = secrets_mgr.access_secret_version("openai")
+except:
+    os.environ["OPENAI_API_KEY"] = ""
+
 
 server = Flask(__name__)
 server.config.update(SECRET_KEY=os.getenv("SECRET_KEY"))
