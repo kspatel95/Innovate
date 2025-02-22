@@ -1,0 +1,41 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "innovate"
+  namespace: "default"
+  labels:
+    app: "innovate"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "innovate"
+  template:
+    metadata:
+      labels:
+        app: "innovate"
+    spec:
+      containers:
+      - name: "nginx-1"
+        image: "nginx:latest"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "innovate-hpa-awjl"
+  namespace: "default"
+  labels:
+    app: "innovate"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "innovate"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
